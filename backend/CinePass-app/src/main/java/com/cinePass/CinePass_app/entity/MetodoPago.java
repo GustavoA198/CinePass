@@ -1,11 +1,11 @@
 package com.cinePass.CinePass_app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -25,6 +25,7 @@ public class MetodoPago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre del método de pago es obligatorio")
     @Column(nullable = false)
     private String nombre;
 
@@ -41,7 +42,7 @@ public class MetodoPago {
 
     // Relaciones
 
-    @OneToMany(mappedBy = "metodoPago", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "metodoPago", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Boleto> boletos = new ArrayList<>();
 
 }

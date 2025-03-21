@@ -1,14 +1,14 @@
 package com.cinePass.CinePass_app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 
@@ -18,7 +18,6 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class Boleto {
 
     @Id
@@ -33,9 +32,11 @@ public class Boleto {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    @Positive(message = "La cantidad debe ser un valor positivo")
     @Column(nullable = false)
     private Integer cantidad;
 
+    @Positive(message = "El precio total debe ser un valor positivo")
     @Column(name = "precio_total", nullable = false)
     private Double precioTotal;
 
@@ -43,6 +44,7 @@ public class Boleto {
     @JoinColumn(name = "metodo_pago_id", nullable = false)
     private MetodoPago metodoPago;
 
+    @NotNull(message = "La fecha de compra es obligatoria")
     @Column(name = "fecha_compra", nullable = false)
     private Instant fechaCompra;
 

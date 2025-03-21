@@ -1,14 +1,15 @@
 package com.cinePass.CinePass_app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class Funcion {
 
     @Id
@@ -31,12 +31,15 @@ public class Funcion {
     @JoinColumn(name = "pelicula_id", nullable = false)
     private Pelicula pelicula;
 
+    @NotNull(message = "El horario es obligatorio")
     @Column(nullable = false)
     private Instant horario;
 
+    @Positive(message = "El precio debe ser un valor positivo")
     @Column(nullable = false)
     private Double precio;
 
+    @PositiveOrZero(message = "Los boletos disponibles deben ser un valor positivo o cero")
     @Column(name = "boletos_disponibles", nullable = false)
     private Integer boletosDisponibles;
 
@@ -48,6 +51,6 @@ public class Funcion {
     @Column(name = "modified_at")
     private Instant modifiedAt;
 
-    @OneToMany(mappedBy = "funcion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "funcion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Boleto> boletos = new ArrayList<>();
 }
