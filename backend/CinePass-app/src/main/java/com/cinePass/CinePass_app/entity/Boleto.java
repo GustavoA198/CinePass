@@ -1,5 +1,6 @@
 package com.cinePass.CinePass_app.entity;
 
+import com.cinePass.CinePass_app.enums.EstadoBoleto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -48,8 +49,10 @@ public class Boleto {
     @Column(name = "fecha_compra", nullable = false)
     private Instant fechaCompra;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "El estado es obligatorio")
     @Column(nullable = false)
-    private String estado;
+    private EstadoBoleto estado = EstadoBoleto.PENDIENTE;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
