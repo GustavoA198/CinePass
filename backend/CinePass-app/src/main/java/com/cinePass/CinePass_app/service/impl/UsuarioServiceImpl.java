@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                     if (usuarioDTO.getEmail() != null && !usuarioDTO.getEmail().isBlank()) {
                         usuario.setEmail(usuarioDTO.getEmail());
                     } else {
-                        usuarioDTO.setEmail(usuario.getEmail()); // Asegura que no se sobrescriba con null
+                        usuarioDTO.setEmail(usuario.getEmail());
                     }
                     if (usuarioDTO.getTelefono() != null && !usuarioDTO.getTelefono().isBlank()) {
                         usuario.setTelefono(usuarioDTO.getTelefono());
