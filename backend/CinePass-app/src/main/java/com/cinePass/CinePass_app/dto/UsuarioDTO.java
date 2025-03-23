@@ -1,7 +1,7 @@
 package com.cinePass.CinePass_app.dto;
 
-import com.cinePass.CinePass_app.utils.EstadoUsuario;
-import com.cinePass.CinePass_app.utils.RolUsuario;
+import com.cinePass.CinePass_app.enums.EstadoUsuario;
+import com.cinePass.CinePass_app.enums.RolUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

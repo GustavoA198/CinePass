@@ -1,4 +1,4 @@
-package com.cinePass.CinePass_app.utils;
+package com.cinePass.CinePass_app.enums;
 
 public enum RolUsuario {
     USUARIO, ADMIN

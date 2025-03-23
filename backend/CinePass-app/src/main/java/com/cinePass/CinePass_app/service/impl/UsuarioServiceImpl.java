@@ -5,7 +5,7 @@ import com.cinePass.CinePass_app.entity.Usuario;
 import com.cinePass.CinePass_app.error.NotFoundException;
 import com.cinePass.CinePass_app.repository.UsuarioRepository;
 import com.cinePass.CinePass_app.service.UsuarioService;
-import com.cinePass.CinePass_app.utils.EstadoUsuario;
+import com.cinePass.CinePass_app.enums.EstadoUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

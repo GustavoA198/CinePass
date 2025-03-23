@@ -1,6 +1,6 @@
 package com.cinePass.CinePass_app.entity;
 
-import com.cinePass.CinePass_app.utils.EstadoPelicula;
+import com.cinePass.CinePass_app.enums.EstadoPelicula;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
