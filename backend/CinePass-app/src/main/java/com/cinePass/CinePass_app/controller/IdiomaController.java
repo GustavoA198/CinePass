@@ -2,6 +2,7 @@ package com.cinePass.CinePass_app.controller;
 
 import com.cinePass.CinePass_app.entity.Idioma;
 import com.cinePass.CinePass_app.service.IdiomaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class IdiomaController {
     private IdiomaService idiomaService;
 
     @PostMapping
-    public ResponseEntity<Idioma> crearIdioma(@RequestBody Idioma idioma) {
+    public ResponseEntity<Idioma> crearIdioma(@Valid @RequestBody Idioma idioma) {
         Idioma nuevoIdioma = idiomaService.crearIdioma(idioma);
         return ResponseEntity.ok(nuevoIdioma);
     }
@@ -35,7 +36,7 @@ public class IdiomaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Idioma> actualizarIdioma(@PathVariable Long id, @RequestBody Idioma idiomaActualizado) {
+    public ResponseEntity<Idioma> actualizarIdioma(@PathVariable Long id, @Valid @RequestBody Idioma idiomaActualizado) {
         Idioma idioma = idiomaService.actualizarIdioma(id, idiomaActualizado);
         return ResponseEntity.ok(idioma);
     }
