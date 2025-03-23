@@ -1,5 +1,6 @@
 package com.cinePass.CinePass_app.entity;
 
+import com.cinePass.CinePass_app.enums.EstadoFuncion;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -42,6 +43,10 @@ public class Funcion {
     @PositiveOrZero(message = "Los boletos disponibles deben ser un valor positivo o cero")
     @Column(name = "boletos_disponibles", nullable = false)
     private Integer boletosDisponibles;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EstadoFuncion estado = EstadoFuncion.ACTIVA;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
