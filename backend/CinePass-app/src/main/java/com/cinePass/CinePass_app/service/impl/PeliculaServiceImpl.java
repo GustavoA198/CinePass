@@ -2,6 +2,7 @@ package com.cinePass.CinePass_app.service.impl;
 
 import com.cinePass.CinePass_app.entity.Pelicula;
 import com.cinePass.CinePass_app.enums.EstadoPelicula;
+import com.cinePass.CinePass_app.error.NotFoundException;
 import com.cinePass.CinePass_app.repository.PeliculaRepository;
 import com.cinePass.CinePass_app.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class PeliculaServiceImpl implements PeliculaService {
 
     @Override
     public Optional<Pelicula> obtenerPeliculaPorId(Long id) {
+        if (!peliculaRepository.existsById(id)) {
+            throw new NotFoundException("Película no encontrada");
+        }
         return peliculaRepository.findById(id);
     }
 
@@ -43,7 +47,7 @@ public class PeliculaServiceImpl implements PeliculaService {
                     pelicula.setEstado(peliculaActualizada.getEstado());
                     return peliculaRepository.save(pelicula);
                 })
-                .orElseThrow(() -> new RuntimeException("Película no encontrada"));
+                .orElseThrow(() -> new NotFoundException("Película no encontrada"));
     }
 
     @Override
